@@ -21,7 +21,7 @@ function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/items')
+    axios.get('https://grocery-store-project.onrender.com/api/items')
       .then((response) => setItems(response.data))
       .catch((error) => console.log('Error fetching items:', error));
   }, []);
@@ -73,7 +73,7 @@ function AppContent() {
       alert('Please enter a delivery address.');
       return;
     }
-    axios.post('http://localhost:5000/api/cart/add', { userId: 'user1', items: cart, address })
+    axios.post('https://grocery-store-project.onrender.com/api/cart/add', { userId: 'user1', items: cart, address })
       .then(() => {
         setOrderPlaced(true);
         setCart([]);

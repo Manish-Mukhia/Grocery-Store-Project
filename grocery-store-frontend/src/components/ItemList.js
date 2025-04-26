@@ -25,7 +25,7 @@ const ItemList = ({ items }) => {
       address: 'N/A'
     };
 
-    axios.post('http://localhost:5000/api/cart/add', enquiry)
+    axios.post('https://grocery-store-project.onrender.com/api/cart/add', enquiry)
       .then(() => {
         setToastMessage('📩 Enquiry sent successfully!');
         setTimeout(() => setToastMessage(''), 2000); // Hide after 2 seconds

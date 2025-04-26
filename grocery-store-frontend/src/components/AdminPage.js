@@ -12,17 +12,17 @@ const AdminPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/cart/admin')
+    axios.get('https://grocery-store-project.onrender.com/api/cart/admin')
       .then((response) => setCarts(response.data))
       .catch((error) => console.log('Error fetching cart data:', error));
 
-    axios.get('http://localhost:5000/api/items')
+    axios.get('https://grocery-store-project.onrender.com/api/items')
       .then((response) => setItems(response.data))
       .catch((error) => console.log('Error fetching items:', error));
   }, []);
 
   const deleteCart = (userId) => {
-    axios.delete(`http://localhost:5000/api/cart/admin/${userId}`)
+    axios.delete(`https://grocery-store-project.onrender.com/api/cart/admin/${userId}`)
       .then(() => {
         alert(`Cart for user ${userId} deleted`);
         setCarts(carts.filter(cart => cart.userId !== userId));
@@ -46,11 +46,11 @@ const AdminPage = () => {
       stock: parseInt(newItem.stock)
     };
 
-    axios.post('http://localhost:5000/api/items', formattedItem)
+    axios.post('https://grocery-store-project.onrender.com/api/items', formattedItem)
       .then(() => {
         alert('Item added successfully');
         setNewItem({ name: '', image: '', price: '', stock: '' });
-        return axios.get('http://localhost:5000/api/items');
+        return axios.get('https://grocery-store-project.onrender.com/api/items');
       })
       .then((response) => setItems(response.data))
       .catch((err) => console.log('Error adding item:', err));
@@ -62,7 +62,7 @@ const AdminPage = () => {
 
   const updateItem = (id) => {
     const item = items.find(i => i._id === id);
-    axios.put(`http://localhost:5000/api/items/${id}`, {
+    axios.put(`https://grocery-store-project.onrender.com/api/items/${id}`, {
       price: parseFloat(item.price),
       stock: parseInt(item.stock)
     })
@@ -71,7 +71,7 @@ const AdminPage = () => {
   };
 
   const deleteItem = (id) => {
-    axios.delete(`http://localhost:5000/api/items/${id}`)
+    axios.delete(`https://grocery-store-project.onrender.com/api/items/${id}`)
       .then(() => {
         setItems(items.filter(i => i._id !== id));
         alert('Item deleted!');
